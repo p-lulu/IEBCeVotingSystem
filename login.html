@@ -1,0 +1,22 @@
+<!-- login.html - Login Page -->
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h2>🔐 Voter Login</h2>
+    <form onsubmit="event.preventDefault(); location.href='vote.html';">
+      <label for="voterID">Voter ID</label>
+      <input type="text" id="voterID required>
+      <label for="pin">PIN</label>
+      <input type="pin" id="pin">
+      <button type="submit">Login</button>
+      <p>Not Registered <a href="register.html">Register</a></p>
+      <p>Forgot your PIN <a href="reset.html">Reset</a></p>
+    </form>
+  </main>
+</body>

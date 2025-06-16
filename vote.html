@@ -1,0 +1,20 @@
+<!-- vote.html - Voting Page -->
+ <!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h2>🗳 Cast Your Vote</h2>
+    <form onsubmit="event.preventDefault(); location.href='result.html';">
+      <label><input type="radio" name="candidate" required> Candidate A</label><br>
+      <label><input type="radio" name="candidate"> Candidate B</label><br>
+      <label><input type="radio" name="candidate"> Candidate C</label><br>
+      <button type="submit">Submit Vote</button>
+    </form>
+  </main>
+</body>
+</html>
