@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel - IEBC eVoting</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f1f8e9;
+      padding: 20px;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #c8e6c9;
+    }
+    button {
+      padding: 6px 10px;
+      margin-right: 5px;
+      border: none;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+    .delete-btn {
+      background-color: #e53935;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>👨🏽‍💻 Admin Panel</h2>
+  <p>Welcome, Tech Admin. Manage users and view system info.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="userTable"></tbody>
+  </table>
+
+  <script>
+    // Allow only TechAdmin
+    const role = localStorage.getItem("role");
+    if (role !== "TechAdmin") {
+      alert("Access Denied");
+      window.location.href = "index.html";
+    }
+
+    // Load users from backend
+    fetch("http://localhost:5000/admin/users")
+      .then(response => response.json())
+      .then(data => {
+        const table = document.getElementById("userTable");
+        data.forEach(user => {
+          table.innerHTML += `
+            <tr>
+              <td>${user.id}</td>
+              <td>${user.username}</td>
+              <td>${user.role}</td>
+              <td>
+                <button onclick="changeRole(${user.id}, 'Supervisor')">Promote</button>
+                <button onclick="changeRole(${user.id}, 'Voter')">Demote</button>
+                <button class="delete-btn" onclick="deleteUser(${user.id})">Delete</button>
+              </td>
+            </tr>
+          ;
+        });
+      });
+
+    function changeRole(id, newRole) {
+      fetch(https://localhost:5000/admin/user/${id}/role, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ role: newRole })
+      })
+      .then(() => window.location.reload());
+    }
+
+    function deleteUser(id) {
+      fetch(http://localhost:5000/admin/user/${id}, {
+        method: 'DELETE'
+      })
+      .then(() => window.location.reload());
+    }
+
+</body>
+</html>

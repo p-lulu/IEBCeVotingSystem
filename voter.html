@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voter Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    .container {
+      background-color: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .election {
+      margin-top: 25px;
+    }
+    .election-title {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .candidate {
+      margin-bottom: 8px;
+    }
+    .submit-btn {
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      background-color: #0056b3;
+    }
+    .thank-you {
+      text-align: center;
+      margin-top: 30px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🗳 Voter Dashboard</h2>
+    <p><strong>Welcome, Voter123</strong></p>
+
+    <div class="election" id="election-box">
+      <div class="election-title">🗳 Election: NATIONAL ELECTION 2025</div>
+      <form id="vote-form">
+        <div class="candidate"><input type="radio" name="candidate" value="Alice"> Alice Amani</div>
+        <div class="candidate"><input type="radio" name="candidate" value="Bob"> Bob Baraka</div>
+        <div class="candidate"><input type="radio" name="candidate" value="Carol"> Carol Chebet</div>
+        <button type="submit" class="submit-btn">✅ Submit Vote</button>
+      </form>
+    </div>
+
+    <div class="thank-you" id="thank-you" style="display:none;">
+      ✅ Your vote has been submitted. Thank you!
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("vote-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const selected = document.querySelector('input[name="candidate"]:checked');
+      if (!selected) {
+        alert("Please select a candidate before submitting.");
+        return;
+      }
+
+      const candidate = selected.value;
+      // You can replace this alert with a POST request to your backend
+      alert("Submitting vote for: " + candidate);
+
+      // Optional: disable voting UI after submission
+      document.getElementById("election-box").style.display = "none";
+      document.getElementById("thank-you").style.display = "block";
+    });
+  </script>
+
+</body>
+</html>

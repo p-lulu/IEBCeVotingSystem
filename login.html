@@ -1,22 +1,37 @@
-<!-- login.html - Login Page -->
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IEBC eVoting-Login</title>
+  <link rel="stylesheet" href="" />
+  <img src="https://www.iebc.or.ke/images/iebclogo1.png" width="200px"/>
 </head>
 <body>
-  <main>
-    <h2>🔐 Voter Login</h2>
-    <form onsubmit="event.preventDefault(); location.href='vote.html';">
-      <label for="voterID">Voter ID</label>
-      <input type="text" id="voterID required>
-      <label for="pin">PIN</label>
-      <input type="pin" id="pin">
+  <div class="container">
+    <h1>IEBC eVoting</h1>
+    <form id="loginForm" method="POST" action="/login">
+      <h2>Login to IEBC</h2>
+
+      <label for="nationalID">NationalID:</label>
+      <input type="text" id="nationalID" name="NationalID" required />
+      
+      <label for="voterID">VoterID:</label>
+      <input type="voterID" id="voterID" name="voterID" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <label for="role">Select Role:</label>
+      <select id="role" name="role">
+        <option value="voter">Voter</option>
+        <option value="techAdmin">TechAdmin</option>
+        <option value="supervisor">Supervisor</option>
+
+      </select>
+        <p id="message"></p>
+
       <button type="submit">Login</button>
-      <p>Not Registered <a href="register.html">Register</a></p>
-      <p>Forgot your PIN <a href="reset.html">Reset</a></p>
     </form>
-  </main>
+  <script src="script.js"></script>
 </body>
+</html>

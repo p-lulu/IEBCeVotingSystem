@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Publish Election Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      padding: 40px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .stats {
+      margin-bottom: 20px;
+      background-color: #f7fafc;
+      padding: 15px;
+      border-left: 5px solid #007bff;
+      border-radius: 5px;
+    }
+    .stats p {
+      margin: 5px 0;
+    }
+    table {
+      width: 100%;
+      margin-top: 10px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    th {
+      background-color: #007bff;
+      color: white;
+    }
+    .btn {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🗳 Election Results Summary</h2>
+
+    <div class="stats">
+      <p><strong>Total Registered Voters:</strong> <span id="total-voters">1,200,900</span></p>
+      <p><strong>Total Votes Cast:</strong> <span id="total-voted">400,005</span></p>
+      <p><strong>Election Status:</strong> <span style="color: green;">✔ Voting Closed</span></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Votes</th>
+        </tr>
+      </thead>
+      <tbody id="result-table">
+        <!-- Results inserted here by JS -->
+      </tbody>
+    </table>
+
+    <button class="btn" onclick="publishResults()">📢 Publish Final Results</button>
+  </div>
+
+  <script>
+    // Example vote data (replace with real backend fetch)
+    const voteData = {
+      total_voters: 500,
+      voted: 420,
+      candidates: {
+        "Alice Amani": 180,
+        "Bob Baraka": 240
+      }
+    };
+
+    // Insert data into the page
+    document.getElementById("total-voters").textContent = voteData.total_voters;
+    document.getElementById("total-voted").textContent = voteData.voted;
+
+    const tableBody = document.getElementById("result-table");
+    for (let [name, votes] of Object.entries(voteData.candidates)) {
+      const row = <tr><td>${name}</td><td>${votes}</td></tr>;
+      tableBody.innerHTML += row;
+    }
+
+    function publishResults() {
+      alert("✅ Results have been published and saved!");
+      // Optional: Call backend to mark election as finalized
+      // fetch("/publish", { method: "POST" })
+    }
+  </script>
+
+</body>
+</html>

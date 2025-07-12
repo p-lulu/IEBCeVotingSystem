@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Supervisor Dashboard - Voting Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 30px;
+    }
+    .dashboard {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    table {
+      width: 100%;
+      margin-top: 20px;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #28a745;
+      color: white;
+    }
+    .stats {
+      margin-top: 20px;
+      background: #e9f5ee;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .btn-finalize {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-finalize:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard">
+    <h2>🗳 Supervisor Voting Dashboard</h2>
+
+    <div class="stats">
+      <p><strong>Total Registered Voters:5,098,908</strong> <span id="total-voters">---</span></p>
+      <p><strong>Total Votes Cast:4,989,789</strong> <span id="total-voted">---</span></p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Candidate</th>
+          <th>Votes</th>
+        </tr>
+      </thead>
+      <tbody id="vote-results">
+        <!-- Filled by JS -->
+        <tr>
+        
+      </tbody>
+    </table>
+
+    <button class="btn-finalize" onclick="finalizeResults()">✅ Finalize and Lock Results</button>
+  </div>
+
+  <script>
+    // Simulate backend data (replace this with your real fetch API)
+    const votingData = {
+      total_voters: 500,
+      voted: 420,
+      candidates: {
+        "Alice Amani": 180,
+        "wagithomo":900
+      }
+    };
+
+    // Populate the page with data
+    document.getElementById("total-voters").textContent = votingData.total_voters;
+    document.getElementById("total-voted").textContent = votingData.voted;
+
+    const resultsBody = document.getElementById("vote-results");
+    for (let [name, votes] of Object.entries(votingData.candidates)) {
+      const row = <tr><td>${name}</td><td>${votes}</td></tr>;
+      resultsBody.innerHTML += row;
+    }
+
+    // Finalize function
+    function finalizeResults() {
+      if (confirm("Are you sure you want to finalize and lock these results?")) {
+        alert("✅ Results finalized and locked!");
+        // You can send a POST request here to your backend endpoint
+        // fetch('/finalize-results', { method: 'POST' }) ...
+      }
+    }
+  </script>
+
+</body>
+</html>
